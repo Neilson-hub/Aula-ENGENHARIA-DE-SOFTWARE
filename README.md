@@ -19,8 +19,18 @@ Unemat
 ## 1. Introdução 
 Projeto de engenharia de software para gestão de TCC 
 
-## 2. Descrição 
+*Dada a realidade da cidade economica social da cidade de XYZ, onde temos 
+vários moradores em situação precária e finan
+Tarefa de casa 
+*
 
+## 2. Descrição 
+|id| Requisitos|
+|1| Temos uma instituição sem fins lucrativos |
+|2| A instituição tem os seguintes atributos: nome, cnpj, localização, cidade|
+|3| A inttituição recebe doação de materias de construção|
+|4| A instituiçâo  tem um deposito| 
+|4| 
 ## 3. Diagramas 
 
 ## 3.1 Diagrama de classe
