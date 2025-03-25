@@ -4,9 +4,12 @@ Unemat
 - [Aula-ENGENHARIA-DE-SOFTWARE](#aula-engenharia-de-software)
   - [1. Introdução](#1-introdução)
   - [2. Descrição](#2-descrição)
-  - [3. Diagramas](#3-diagramas)
+- [3. Diagramas](#3-diagramas)
   - [3.1 Diagrama de classe](#31-diagrama-de-classe)
+    - [diagrama feito no white star(versão1)](#diagrama-feito-no-white-starversão1)
+    - [diagrama feito no assistente de AI](#diagrama-feito-no-assistente-de-ai)
   - [3.2. Diagrama de casos de uso](#32-diagrama-de-casos-de-uso)
+  - [3.3. Diagrama de atividade](#33-diagrama-de-atividade)
 
 
 
@@ -43,10 +46,18 @@ Tarefa de casa
 |14|	O sistema deve possuir um módulo de cadastro e gerenciamento de voluntários que colaboram com a instituição.|
 |15|	O sistema deve implementar mecanismos de segurança, como autenticação, autorização e backup de dados, para proteger as informações da instituição.|
 
-## 3. Diagramas 
+# 3. Diagramas 
 
 ## 3.1 Diagrama de classe
 
-![]()
+### diagrama feito no white star(versão1)
+
+
+### diagrama feito no assistente de AI
+
+
 
 ## 3.2. Diagrama de casos de uso 
+
+
+## 3.3. Diagrama de atividade 
