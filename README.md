@@ -60,6 +60,7 @@ Tarefa de casa
 
 ## 3.1 Diagrama de classe
 
+![diagrama de classe](https://github.com/Neilson-hub/Aula-ENGENHARIA-DE-SOFTWARE/blob/main/imagem/diagrama-classe.png)
 ### diagrama feito no white star(versão1)
 
 
