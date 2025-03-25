@@ -4,10 +4,11 @@ Unemat
 - [Aula-ENGENHARIA-DE-SOFTWARE](#aula-engenharia-de-software)
   - [1. Introdução](#1-introdução)
   - [2. Descrição](#2-descrição)
-  - [2.1 Requisitos](#21-requisitos)
-  - [2.2](#22)
+  - [2.1. Requisitos](#21-requisitos)
+  - [2.2.](#22)
 - [3. Diagramas](#3-diagramas)
   - [3.1 Diagrama de classe](#31-diagrama-de-classe)
+  - [3.2.  Diagrama ER](#32--diagrama-er)
     - [diagrama feito no white star(versão1)](#diagrama-feito-no-white-starversão1)
     - [diagrama feito no assistente de AI](#diagrama-feito-no-assistente-de-ai)
   - [3.2. Diagrama de casos de uso](#32-diagrama-de-casos-de-uso)
@@ -58,13 +59,16 @@ Tarefa de casa
 |24|Registrar logs de todas as atividades, possibilitando auditoria e monitoramento da segurança e integridade dos dados.|
 |25|Ser responsivo, garantindo compatibilidade e boa usabilidade em dispositivos móveis e diferentes navegadores.|
 
-## 2.1 Requisitos
-## 2.2
+## 2.1. Requisitos
+## 2.2.
 # 3. Diagramas 
 
 ## 3.1 Diagrama de classe
 
 ![diagrama de classe](https://github.com/Neilson-hub/Aula-ENGENHARIA-DE-SOFTWARE/blob/main/imagem/diagrama-classe.png)
+
+
+## 3.2.  Diagrama ER 
 ### diagrama feito no white star(versão1)
 
 
