@@ -370,7 +370,7 @@ erDiagram
 
 
 ```mermaid
--- Remover tabelas existentes (ordem inversa das dependências)
+
 DROP TABLE IF EXISTS Log;
 DROP TABLE IF EXISTS Pagamento;
 DROP TABLE IF EXISTS Relatorio;
