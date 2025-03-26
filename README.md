@@ -5,7 +5,7 @@ Unemat
   - [1. Introdução](#1-introdução)
   - [2. Descrição](#2-descrição)
   - [2.1. Requisitos](#21-requisitos)
-  - [2.2.](#22)
+  - [2.2. Requisitos funcionais e não funcionais](#22-requisitos-funcionais-e-não-funcionais)
 - [3. Diagramas](#3-diagramas)
   - [3.1 Diagrama de classe](#31-diagrama-de-classe)
   - [3.2.  Diagrama ER](#32--diagrama-er)
@@ -60,7 +60,8 @@ Tarefa de casa
 |25|Ser responsivo, garantindo compatibilidade e boa usabilidade em dispositivos móveis e diferentes navegadores.|
 
 ## 2.1. Requisitos
-## 2.2.
+## 2.2. Requisitos funcionais e não funcionais 
+[!tip] Prompt
 # 3. Diagramas 
 
 ## 3.1 Diagrama de classe
