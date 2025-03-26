@@ -8,6 +8,7 @@ Unemat
   - [2.2. Requisitos funcionais e não funcionais](#22-requisitos-funcionais-e-não-funcionais)
 - [3. Diagramas](#3-diagramas)
   - [3.1 Diagrama de classe](#31-diagrama-de-classe)
+    - [3.1.1.Explicação](#311explicação)
   - [3.2.  Diagrama ER](#32--diagrama-er)
     - [diagrama feito no white star(versão1)](#diagrama-feito-no-white-starversão1)
     - [diagrama feito no assistente de AI](#diagrama-feito-no-assistente-de-ai)
@@ -225,7 +226,35 @@ classDiagram
 
 ```
 
+### 3.1.1.Explicação
+Instituicao: Representa a organização sem fins lucrativos, com atributos essenciais como nome, cnpj, localização e cidade. Além disso, a instituição gerencia cadastros e processos internos.
+
+Deposito: Responsável pelo gerenciamento do estoque, registrando a entrada e saída dos materiais.
+
+Material e Movimento: Os materiais doados (ex.: tijolo, cimento, telhas) são armazenados no depósito e suas movimentações (entrada e saída) são registradas em histórico.
+
+Doador e Beneficiario: Cadastros para gerenciar as entidades que doam e recebem materiais.
+
+Agendamento: Gerencia as coletas de doadores e as entregas aos beneficiários.
+
+Voluntario: Cadastro dos voluntários que colaboram com a instituição.
+
+Usuario: Responsável pelo acesso ao sistema, incluindo autenticação e segurança.
+
+Feedback: Armazena avaliações e comentários dos doadores e beneficiários.
+
+Notificacao: Controla o envio de notificações automáticas (e-mail, SMS, etc.) para alertar sobre eventos e atualizações.
+
+Relatorio: Geração de relatórios periódicos para análise de doações e movimentações de estoque.
+
+Pagamento: Integração com plataformas de pagamento para doações online.
+
+Log: Registro de atividades para auditoria e monitoramento da segurança do sistema.
+
 ## 3.2.  Diagrama ER 
+
+
+
 ### diagrama feito no white star(versão1)
 
 
