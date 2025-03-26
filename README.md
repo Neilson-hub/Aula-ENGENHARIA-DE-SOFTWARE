@@ -371,6 +371,7 @@ erDiagram
 
 ```mermaid
 
+-- Remover tabelas existentes (ordem inversa das dependências)
 DROP TABLE IF EXISTS Log;
 DROP TABLE IF EXISTS Pagamento;
 DROP TABLE IF EXISTS Relatorio;
@@ -513,5 +514,6 @@ CREATE TABLE Log (
     dataHora DATETIME NOT NULL,
     FOREIGN KEY (instituicao_id) REFERENCES Instituicao(id)
 );
+
 
 ```
