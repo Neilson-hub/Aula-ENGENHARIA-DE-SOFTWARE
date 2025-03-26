@@ -101,6 +101,13 @@ se o requisito é "Não funcional", para esta tarefa use a lista a baixo:
 ![diagrama de classe](https://github.com/Neilson-hub/Aula-ENGENHARIA-DE-SOFTWARE/blob/main/imagem/diagrama-classe.png)
 
 
+>[!TIP]
+> Faça um diagrama de classe usanndo Markdown e Mermaid, para os requisitos abaixo
+
+
+```
+```
+
 ## 3.2.  Diagrama ER 
 ### diagrama feito no white star(versão1)
 
