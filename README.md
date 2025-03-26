@@ -15,6 +15,7 @@ Unemat
   - [3.2. Diagrama de casos de uso](#32-diagrama-de-casos-de-uso)
   - [3.3. Diagrama de atividade](#33-diagrama-de-atividade)
     - [A.1. Script SQL](#a1-script-sql)
+    - [A.2. Dados ariticiais para teste de banco](#a2-dados-ariticiais-para-teste-de-banco)
 
 
 
@@ -514,6 +515,128 @@ CREATE TABLE Log (
     dataHora DATETIME NOT NULL,
     FOREIGN KEY (instituicao_id) REFERENCES Instituicao(id)
 );
+
+
+```
+
+### A.2. Dados ariticiais para teste de banco 
+
+>[!TIP]
+>Faça um Sript SQL para MySQL, usando os comandos Create table anteriores, para
+popular as tabelas do banco com pelo menos 5 registros ficticios 
+
+```SQL
+-- Inserindo dados na tabela Instituicao
+INSERT INTO Instituicao (nome, cnpj, localizacao, cidade) VALUES
+('Instituição A', '12345678000199', 'Rua A, 100', 'São Paulo'),
+('Instituição B', '98765432000188', 'Av. B, 200', 'Rio de Janeiro'),
+('Instituição C', '11223344000177', 'Alameda C, 300', 'Belo Horizonte'),
+('Instituição D', '55667788000166', 'Rua D, 400', 'Curitiba'),
+('Instituição E', '99887766000155', 'Av. E, 500', 'Porto Alegre');
+
+-- Inserindo dados na tabela Deposito (1 depósito para cada Instituicao)
+INSERT INTO Deposito (instituicao_id) VALUES
+(1),
+(2),
+(3),
+(4),
+(5);
+
+-- Inserindo dados na tabela Material (associados aos depósitos)
+INSERT INTO Material (deposito_id, tipo, quantidade) VALUES
+(1, 'Tijolo', 1000),
+(2, 'Cimento', 500),
+(3, 'Telha', 750),
+(4, 'Tijolo', 1200),
+(5, 'Cimento', 600);
+
+-- Inserindo dados na tabela Movimentacao (associados aos materiais)
+INSERT INTO Movimentacao (material_id, data, tipo, quantidade) VALUES
+(1, '2025-03-01', 'entrada', 200),
+(2, '2025-03-02', 'entrada', 150),
+(3, '2025-03-03', 'saida', 100),
+(4, '2025-03-04', 'entrada', 300),
+(5, '2025-03-05', 'saida', 50);
+
+-- Inserindo dados na tabela Doador (cada um associado a uma Instituicao)
+INSERT INTO Doador (instituicao_id, nome, contato) VALUES
+(1, 'Doador A', 'doadorA@example.com'),
+(2, 'Doador B', 'doadorB@example.com'),
+(3, 'Doador C', 'doadorC@example.com'),
+(4, 'Doador D', 'doadorD@example.com'),
+(5, 'Doador E', 'doadorE@example.com');
+
+-- Inserindo dados na tabela Beneficiario (cada um associado a uma Instituicao)
+INSERT INTO Beneficiario (instituicao_id, nome, contato) VALUES
+(1, 'Beneficiário A', 'benefA@example.com'),
+(2, 'Beneficiário B', 'benefB@example.com'),
+(3, 'Beneficiário C', 'benefC@example.com'),
+(4, 'Beneficiário D', 'benefD@example.com'),
+(5, 'Beneficiário E', 'benefE@example.com');
+
+-- Inserindo dados na tabela Agenda (para agendamentos de coletas/entregas)
+INSERT INTO Agenda (instituicao_id, dataHora, tipo, status) VALUES
+(1, '2025-03-10 09:00:00', 'coleta', 'agendado'),
+(2, '2025-03-11 10:00:00', 'entrega', 'confirmado'),
+(3, '2025-03-12 11:00:00', 'coleta', 'pendente'),
+(4, '2025-03-13 12:00:00', 'entrega', 'cancelado'),
+(5, '2025-03-14 13:00:00', 'coleta', 'agendado');
+
+-- Inserindo dados na tabela Voluntario
+INSERT INTO Voluntario (instituicao_id, nome, contato) VALUES
+(1, 'Voluntário A', 'volA@example.com'),
+(2, 'Voluntário B', 'volB@example.com'),
+(3, 'Voluntário C', 'volC@example.com'),
+(4, 'Voluntário D', 'volD@example.com'),
+(5, 'Voluntário E', 'volE@example.com');
+
+-- Inserindo dados na tabela Usuario (para controle de acesso)
+INSERT INTO Usuario (instituicao_id, username, password) VALUES
+(1, 'userA', 'passA'),
+(2, 'userB', 'passB'),
+(3, 'userC', 'passC'),
+(4, 'userD', 'passD'),
+(5, 'userE', 'passE');
+
+-- Inserindo dados na tabela Feedback (avaliações e comentários)
+INSERT INTO Feedback (instituicao_id, comentario, avaliacao, data) VALUES
+(1, 'Ótima experiência', 5, '2025-03-15'),
+(2, 'Bom atendimento', 4, '2025-03-16'),
+(3, 'Satisfeito com a doação', 5, '2025-03-17'),
+(4, 'Pode melhorar', 3, '2025-03-18'),
+(5, 'Excelente serviço', 5, '2025-03-19');
+
+-- Inserindo dados na tabela Notificacao (envio de alertas)
+INSERT INTO Notificacao (instituicao_id, mensagem, tipo, dataEnvio) VALUES
+(1, 'Estoque baixo de tijolos', 'alerta', '2025-03-20 08:00:00'),
+(2, 'Nova doação registrada', 'info', '2025-03-20 09:00:00'),
+(3, 'Movimentação realizada', 'info', '2025-03-20 10:00:00'),
+(4, 'Alerta de segurança', 'alerta', '2025-03-20 11:00:00'),
+(5, 'Relatório mensal disponível', 'info', '2025-03-20 12:00:00');
+
+-- Inserindo dados na tabela Relatorio (geração de relatórios)
+INSERT INTO Relatorio (instituicao_id, dataGeracao, tipo) VALUES
+(1, '2025-03-21', 'mensal'),
+(2, '2025-03-21', 'semanal'),
+(3, '2025-03-21', 'mensal'),
+(4, '2025-03-21', 'diário'),
+(5, '2025-03-21', 'anual');
+
+-- Inserindo dados na tabela Pagamento (integração com plataformas de pagamento)
+INSERT INTO Pagamento (instituicao_id, valor, data) VALUES
+(1, 1500.00, '2025-03-22'),
+(2, 2500.50, '2025-03-22'),
+(3, 1800.75, '2025-03-22'),
+(4, 2200.00, '2025-03-22'),
+(5, 3000.00, '2025-03-22');
+
+-- Inserindo dados na tabela Log (registro de atividades para auditoria)
+INSERT INTO Log (instituicao_id, acao, dataHora) VALUES
+(1, 'Usuário logado', '2025-03-23 14:00:00'),
+(2, 'Material atualizado', '2025-03-23 15:00:00'),
+(3, 'Doação registrada', '2025-03-23 16:00:00'),
+(4, 'Agendamento criado', '2025-03-23 17:00:00'),
+(5, 'Backup realizado', '2025-03-23 18:00:00');
 
 
 ```
