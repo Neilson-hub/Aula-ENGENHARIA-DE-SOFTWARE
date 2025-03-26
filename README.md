@@ -106,6 +106,123 @@ se o requisito é "Não funcional", para esta tarefa use a lista a baixo:
 
 
 ```
+classDiagram
+    class Instituicao {
+        - nome: String
+        - cnpj: String
+        - localizacao: String
+        - cidade: String
+        + receberDoacao()
+        + cadastrarMaterial()
+        + cadastrarDoador()
+        + cadastrarBeneficiario()
+        + gerenciarEstoque()
+    }
+    
+    class Deposito {
+        - estoque: List~Material~
+        + registrarEntrada(material: Material, quantidade: int)
+        + registrarSaida(material: Material, quantidade: int)
+    }
+    
+    class Material {
+        - id: int
+        - tipo: String
+        - descricao: String
+        - quantidade: int
+    }
+    
+    class Movimento {
+        - data: Date
+        - tipo: String   // entrada ou saída
+        - quantidade: int
+        + registrarMovimento()
+    }
+    
+    class Doador {
+        - id: int
+        - nome: String
+        - contato: String
+    }
+    
+    class Beneficiario {
+        - id: int
+        - nome: String
+        - contato: String
+    }
+    
+    class Agendamento {
+        - id: int
+        - dataHora: DateTime
+        - tipo: String  // coleta ou entrega
+        - status: String
+        + agendar()
+    }
+    
+    class Voluntario {
+        - id: int
+        - nome: String
+        - contato: String
+    }
+    
+    class Usuario {
+        - id: int
+        - username: String
+        - password: String
+        + autenticar()
+    }
+    
+    class Feedback {
+        - id: int
+        - comentario: String
+        - avaliacao: int
+        - data: Date
+    }
+    
+    class Notificacao {
+        - id: int
+        - mensagem: String
+        - tipo: String  // email, SMS, etc.
+        - dataEnvio: DateTime
+        + enviar()
+    }
+    
+    class Relatorio {
+        - id: int
+        - dataGeracao: Date
+        - tipo: String
+        + gerar()
+    }
+    
+    class Pagamento {
+        - id: int
+        - valor: float
+        - data: Date
+        + processarPagamento()
+    }
+    
+    class Log {
+        - id: int
+        - acao: String
+        - dataHora: DateTime
+        + registrarAcao()
+    }
+    
+    %% Relacionamentos
+    Instituicao "1" --> "1" Deposito : possui
+    Deposito "1" --> "*" Material : armazena
+    Material "1" --> "*" Movimento : gera
+    Instituicao "1" --> "*" Doador : cadastra
+    Instituicao "1" --> "*" Beneficiario : cadastra
+    Instituicao "1" --> "*" Agendamento : gerencia
+    Instituicao "1" --> "*" Voluntario : gerencia
+    Instituicao "1" --> "*" Usuario : possui
+    Instituicao "1" --> "*" Feedback : recebe
+    Instituicao "1" --> "*" Notificacao : envia
+    Instituicao "1" --> "*" Relatorio : gera
+    Instituicao "1" --> "*" Pagamento : integra
+    Instituicao "1" --> "*" Log : registra
+
 ```
 
 ## 3.2.  Diagrama ER 
