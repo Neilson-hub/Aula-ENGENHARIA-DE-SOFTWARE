@@ -14,6 +14,7 @@ Unemat
     - [diagrama feito no assistente de AI](#diagrama-feito-no-assistente-de-ai)
   - [3.2. Diagrama de casos de uso](#32-diagrama-de-casos-de-uso)
   - [3.3. Diagrama de atividade](#33-diagrama-de-atividade)
+    - [A.1. Script SQL](#a1-script-sql)
 
 
 
@@ -357,3 +358,160 @@ erDiagram
 
 
 ## 3.3. Diagrama de atividade 
+
+
+
+
+
+### A.1. Script SQL 
+
+>[!TIP]
+>faça um script para MYSQL, para o diagrama mermaid acima 
+
+
+```mermaid
+-- Remover tabelas existentes (ordem inversa das dependências)
+DROP TABLE IF EXISTS Log;
+DROP TABLE IF EXISTS Pagamento;
+DROP TABLE IF EXISTS Relatorio;
+DROP TABLE IF EXISTS Notificacao;
+DROP TABLE IF EXISTS Feedback;
+DROP TABLE IF EXISTS Usuario;
+DROP TABLE IF EXISTS Voluntario;
+DROP TABLE IF EXISTS Agenda;
+DROP TABLE IF EXISTS Beneficiario;
+DROP TABLE IF EXISTS Doador;
+DROP TABLE IF EXISTS Movimentacao;
+DROP TABLE IF EXISTS Material;
+DROP TABLE IF EXISTS Deposito;
+DROP TABLE IF EXISTS Instituicao;
+
+-- Tabela Instituicao
+CREATE TABLE Instituicao (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    cnpj VARCHAR(20) NOT NULL,
+    localizacao VARCHAR(255) NOT NULL,
+    cidade VARCHAR(100) NOT NULL
+);
+
+-- Tabela Deposito (relaçâo 1:1 com Instituicao)
+CREATE TABLE Deposito (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    instituicao_id INT NOT NULL,
+    FOREIGN KEY (instituicao_id) REFERENCES Instituicao(id)
+);
+
+-- Tabela Material (relacionada ao Deposito)
+CREATE TABLE Material (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    deposito_id INT NOT NULL,
+    tipo VARCHAR(50) NOT NULL,
+    quantidade INT NOT NULL,
+    FOREIGN KEY (deposito_id) REFERENCES Deposito(id)
+);
+
+-- Tabela Movimentacao (relacionada ao Material)
+CREATE TABLE Movimentacao (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    material_id INT NOT NULL,
+    data DATE NOT NULL,
+    tipo ENUM('entrada', 'saida') NOT NULL,
+    quantidade INT NOT NULL,
+    FOREIGN KEY (material_id) REFERENCES Material(id)
+);
+
+-- Tabela Doador (relacionada à Instituicao)
+CREATE TABLE Doador (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    instituicao_id INT NOT NULL,
+    nome VARCHAR(255) NOT NULL,
+    contato VARCHAR(255),
+    FOREIGN KEY (instituicao_id) REFERENCES Instituicao(id)
+);
+
+-- Tabela Beneficiario (relacionada à Instituicao)
+CREATE TABLE Beneficiario (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    instituicao_id INT NOT NULL,
+    nome VARCHAR(255) NOT NULL,
+    contato VARCHAR(255),
+    FOREIGN KEY (instituicao_id) REFERENCES Instituicao(id)
+);
+
+-- Tabela Agenda (para agendamentos de coletas e entregas)
+CREATE TABLE Agenda (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    instituicao_id INT NOT NULL,
+    dataHora DATETIME NOT NULL,
+    tipo ENUM('coleta', 'entrega') NOT NULL,
+    status VARCHAR(50),
+    FOREIGN KEY (instituicao_id) REFERENCES Instituicao(id)
+);
+
+-- Tabela Voluntario (relacionada à Instituicao)
+CREATE TABLE Voluntario (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    instituicao_id INT NOT NULL,
+    nome VARCHAR(255) NOT NULL,
+    contato VARCHAR(255),
+    FOREIGN KEY (instituicao_id) REFERENCES Instituicao(id)
+);
+
+-- Tabela Usuario (para controle de acesso)
+CREATE TABLE Usuario (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    instituicao_id INT NOT NULL,
+    username VARCHAR(100) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    FOREIGN KEY (instituicao_id) REFERENCES Instituicao(id)
+);
+
+-- Tabela Feedback (avaliações e comentários)
+CREATE TABLE Feedback (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    instituicao_id INT NOT NULL,
+    comentario TEXT,
+    avaliacao INT,
+    data DATE,
+    FOREIGN KEY (instituicao_id) REFERENCES Instituicao(id)
+);
+
+-- Tabela Notificacao (envio de alertas)
+CREATE TABLE Notificacao (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    instituicao_id INT NOT NULL,
+    mensagem TEXT,
+    tipo VARCHAR(50),
+    dataEnvio DATETIME NOT NULL,
+    FOREIGN KEY (instituicao_id) REFERENCES Instituicao(id)
+);
+
+-- Tabela Relatorio (geração de relatórios)
+CREATE TABLE Relatorio (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    instituicao_id INT NOT NULL,
+    dataGeracao DATE NOT NULL,
+    tipo VARCHAR(50),
+    FOREIGN KEY (instituicao_id) REFERENCES Instituicao(id)
+);
+
+-- Tabela Pagamento (integração com plataformas de pagamento)
+CREATE TABLE Pagamento (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    instituicao_id INT NOT NULL,
+    valor DECIMAL(10,2) NOT NULL,
+    data DATE NOT NULL,
+    FOREIGN KEY (instituicao_id) REFERENCES Instituicao(id)
+);
+
+-- Tabela Log (registro de atividades para auditoria)
+CREATE TABLE Log (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    instituicao_id INT NOT NULL,
+    acao TEXT,
+    dataHora DATETIME NOT NULL,
+    FOREIGN KEY (instituicao_id) REFERENCES Instituicao(id)
+);
+
+```
