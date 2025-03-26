@@ -252,8 +252,99 @@ Pagamento: Integração com plataformas de pagamento para doações online.
 Log: Registro de atividades para auditoria e monitoramento da segurança do sistema.
 
 ## 3.2.  Diagrama ER 
+Faça uma diagrama de Entidade de Relocionamento usanndo Markdown e Mermaid, para os requisitos abaixo
 
+```mermaid
+erDiagram
+    INSTITUICAO {
+      string nome
+      string cnpj
+      string localizacao
+      string cidade
+    }
+    DEPOSITO {
+      int id
+    }
+    MATERIAL {
+      int id
+      string tipo
+      int quantidade
+    }
+    MOVIMENTACAO {
+      int id
+      date data
+      string tipo "entrada/saida"
+      int quantidade
+    }
+    DOADOR {
+      int id
+      string nome
+      string contato
+    }
+    BENEFICIARIO {
+      int id
+      string nome
+      string contato
+    }
+    AGENDA {
+      int id
+      datetime dataHora
+      string tipo "coleta/entrega"
+      string status
+    }
+    VOLUNTARIO {
+      int id
+      string nome
+      string contato
+    }
+    USUARIO {
+      int id
+      string username
+      string password
+    }
+    FEEDBACK {
+      int id
+      string comentario
+      int avaliacao
+      date data
+    }
+    NOTIFICACAO {
+      int id
+      string mensagem
+      string tipo
+      datetime dataEnvio
+    }
+    RELATORIO {
+      int id
+      date dataGeracao
+      string tipo
+    }
+    PAGAMENTO {
+      int id
+      float valor
+      date data
+    }
+    LOG {
+      int id
+      string acao
+      datetime dataHora
+    }
 
+    INSTITUICAO ||--|| DEPOSITO : "possui"
+    DEPOSITO ||--o{ MATERIAL : "armazena"
+    MATERIAL ||--o{ MOVIMENTACAO : "registra"
+    INSTITUICAO ||--o{ DOADOR : "cadastra"
+    INSTITUICAO ||--o{ BENEFICIARIO : "cadastra"
+    INSTITUICAO ||--o{ AGENDA : "agenda"
+    INSTITUICAO ||--o{ VOLUNTARIO : "gerencia"
+    INSTITUICAO ||--o{ USUARIO : "possui"
+    INSTITUICAO ||--o{ FEEDBACK : "recebe"
+    INSTITUICAO ||--o{ NOTIFICACAO : "envia"
+    INSTITUICAO ||--o{ RELATORIO : "gera"
+    INSTITUICAO ||--o{ PAGAMENTO : "integra"
+    INSTITUICAO ||--o{ LOG : "registra"
+
+```
 
 ### diagrama feito no white star(versão1)
 
