@@ -369,7 +369,7 @@ erDiagram
 >faça um script para MYSQL, para o diagrama mermaid acima 
 
 
-```mermaid
+```SQL
 
 -- Remover tabelas existentes (ordem inversa das dependências)
 DROP TABLE IF EXISTS Log;
