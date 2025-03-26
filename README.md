@@ -105,7 +105,7 @@ se o requisito é "Não funcional", para esta tarefa use a lista a baixo:
 > Faça um diagrama de classe usanndo Markdown e Mermaid, para os requisitos abaixo
 
 
-```
+```mermaid
 classDiagram
     class Instituicao {
         - nome: String
