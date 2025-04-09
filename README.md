@@ -14,6 +14,16 @@ Unemat
     - [diagrama feito no assistente de AI](#diagrama-feito-no-assistente-de-ai)
   - [3.2. Diagrama de casos de uso](#32-diagrama-de-casos-de-uso)
   - [3.3. Diagrama de atividade](#33-diagrama-de-atividade)
+  - [3.4 Diagrama de componentes](#34-diagrama-de-componentes)
+  - [3.5 Diagrama  de implatação](#35-diagrama--de-implatação)
+  - [3.6 Diagrama C4](#36-diagrama-c4)
+    - [3.6.1 Diagrama C4 de contexto](#361-diagrama-c4-de-contexto)
+    - [3.6.2 Diagrama C4 de conteiner](#362-diagrama-c4-de-conteiner)
+    - [3.6.2 Diagrama C4 de componente](#362-diagrama-c4-de-componente)
+    - [3.6.3 Diagrama C4 de código](#363-diagrama-c4-de-código)
+  - [4. Histórias de usuário](#4-histórias-de-usuário)
+  - [5. Protótipo de telas](#5-protótipo-de-telas)
+  - [6. Diagram](#6-diagram)
     - [A.1. Script SQL](#a1-script-sql)
     - [A.2. Dados ariticiais para teste de banco](#a2-dados-ariticiais-para-teste-de-banco)
 
@@ -361,6 +371,22 @@ erDiagram
 ## 3.3. Diagrama de atividade 
 
 
+## 3.4 Diagrama de componentes 
+
+## 3.5 Diagrama  de implatação 
+
+
+## 3.6 Diagrama C4
+
+### 3.6.1 Diagrama C4 de contexto 
+### 3.6.2 Diagrama C4 de conteiner
+### 3.6.2 Diagrama C4 de componente
+### 3.6.3 Diagrama C4 de código
+
+## 4. Histórias de usuário
+## 5. Protótipo de telas 
+## 6. Diagram
+
 
 
 
@@ -640,3 +666,6 @@ INSERT INTO Log (instituicao_id, acao, dataHora) VALUES
 
 
 ```
+
+
+
