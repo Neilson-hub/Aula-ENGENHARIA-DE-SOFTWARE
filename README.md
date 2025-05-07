@@ -525,7 +525,7 @@ flowchart TD
  ```
 
 ## 3.4 Diagrama de componentes 
-
+O diagrama de componentes é utilizado para representar a organização e a dependência entre os módulos de software (componentes) em um sistema, mostrando como eles estão estruturados e como se comunicam por meio de interfaces. Ele é essencial para a modelagem da arquitetura lógica do sistema, especialmente em projetos de média e grande escala, pois permite visualizar a divisão em partes reutilizáveis, facilitando o entendimento da modularidade, da manutenção e da integração entre diferentes partes do software.
 ```mermaid
 graph TB
   %% Front-End Component
@@ -582,7 +582,44 @@ graph TB
  ```
 
 ## 3.5 Diagrama  de implatação 
+O diagrama de implantação serve para representar a arquitetura física de um sistema, mostrando como os componentes de software são distribuídos entre os nós de hardware (servidores, dispositivos, redes), além das conexões entre esses elementos. Ele é fundamental para visualizar a infraestrutura necessária para executar o sistema, evidenciando aspectos como servidores, bancos de dados, dispositivos móveis e a comunicação entre eles. Esse diagrama é especialmente útil nas fases de planejamento da infraestrutura, implantação e manutenção de sistemas distribuídos ou baseados em nuvem.
+```mermaid
+graph TB
+  %% Nós de hardware/infraestrutura
+  subgraph Client [Nó: Cliente]
+    Browser[Browser Web/Mobile]
+  end
 
+  subgraph WebServer [Nó: Servidor Web]
+    Nginx[Nginx<br/><i>Reverse Proxy</i>]
+    Frontend[Front-End estático<br/>(HTML/CSS/JS)]
+  end
+
+  subgraph AppServer [Nó: Servidor de Aplicação]
+    API[API Service<br/>(Node.js/Python/etc.)]
+    Worker[Worker de Tarefas<br/>(fila/background)]
+  end
+
+  subgraph DBServer [Nó: Servidor de Banco]
+    MySQL[(MySQL Database)]
+  end
+
+  subgraph Integrations [Nó: Serviços Externos]
+    SocialAPI[API de Redes Sociais]
+    PaymentAPI[API de Pagamentos]
+  end
+
+  %% Comunicação entre nós
+  Browser      --> Frontend
+  Frontend     --> Nginx
+  Nginx        --> API
+  API          --> MySQL
+  Worker       --> MySQL
+
+  %% Integrações externas
+  API          --> SocialAPI
+  API          --> PaymentAPI
+ ```
 
 ## 3.6 Diagrama C4
 
