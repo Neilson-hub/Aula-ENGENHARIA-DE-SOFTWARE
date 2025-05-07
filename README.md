@@ -491,18 +491,36 @@ O diagrama de atividades é utilizado para modelar o fluxo de controle ou de ati
 
 ```mermaid
 flowchart TD
-    start((Início))
-    start --> FillForm[Preencher formulário de doação]
-    FillForm --> Review{Doação aprovada?}
-    Review -- Não --> NotifyReject[Notificar rejeição ao doador]
-    NotifyReject --> end((Fim))
-    Review -- Sim --> SchedulePickup[Agendar coleta]
-    SchedulePickup --> Pickup[Coleta dos materiais]
-    Pickup --> Receive[Registrar entrada no depósito]
-    Receive --> UpdateStock[Atualizar estoque]
-    UpdateStock --> CheckLow{Estoque baixo?}
-    CheckLow -- Sim --> SendAlert[Enviar alerta ao administrador]
-    CheckLow -- Não --> end
+    Start([Início])  
+    Start --> PreencherForm[Preencher formulário de doação]  
+
+    PreencherForm --> ValidarDoador{Doador cadastrado?}  
+    ValidarDoador -- Não --> CadastrarDoador[Cadastrar Doador]  
+    CadastrarDoador --> RegistrarDoacao[Registrar doação de materiais]  
+    ValidarDoador -- Sim --> RegistrarDoacao  
+
+    RegistrarDoacao --> AgendarColeta[Agendar coleta]  
+    AgendarColeta --> EfetuarColeta[Efetuar coleta de materiais]  
+    EfetuarColeta --> MovimentacaoEntrada[Registrar movimentação (entrada)]  
+    MovimentacaoEntrada --> AtualizarEstoque[Atualizar estoque]  
+
+    AtualizarEstoque --> EstoqueCritico{Estoque abaixo do mínimo?}  
+    EstoqueCritico -- Sim --> EnviarNotificacao[Enviar notificação crítica]  
+    EstoqueCritico -- Não --> AguardarEntrega  
+
+    AguardarEntrega[Entregar ao beneficiário]  
+    AguardarEntrega --> ConfirmarEntrega{Entrega confirmada?}  
+    ConfirmarEntrega -- Não --> RegistrarLogErro[Registrar log de falha na entrega]  
+    RegistrarLogErro --> End([Fim])  
+    ConfirmarEntrega -- Sim --> ColetarFeedback[Coletar feedback do beneficiário]  
+
+    ColetarFeedback --> RegistrarFeedback[Registrar feedback]  
+    RegistrarFeedback --> GerarRelatorio[Gerar relatório de doações]  
+    EnviarNotificacao --> GerarRelatorio  
+
+    GerarRelatorio --> RegistrarLog[Registrar log de atividade]  
+    RegistrarLog --> End([Fim])  
+
 
 
  ```
