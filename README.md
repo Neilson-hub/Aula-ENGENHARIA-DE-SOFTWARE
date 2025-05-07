@@ -13,7 +13,6 @@ Unemat
     - [diagrama feito no white star(versão1)](#diagrama-feito-no-white-starversão1)
     - [diagrama feito no assistente de AI](#diagrama-feito-no-assistente-de-ai)
   - [3.2. Diagrama de casos de uso](#32-diagrama-de-casos-de-uso)
-  - [🎯 2. **Diagrama de Casos de Uso (Mermaid)**](#-2-diagrama-de-casos-de-uso-mermaid)
     - [A.2. Dados ariticiais para teste de banco](#a2-dados-ariticiais-para-teste-de-banco)
 - [8. Cronograma e Gantt](#8-cronograma-e-gantt)
 - [9. Custos](#9-custos)
@@ -352,111 +351,111 @@ erDiagram
 
 ## 3.2. Diagrama de casos de uso 
 
+```mermaid
 classDiagram
     class Instituicao {
-        - id: int
-        - nome: String
-        - cnpj: String
-        - localizacao: String
-        - cidade: String
-        + receberDoacao()
-        + cadastrarMaterial()
-        + cadastrarDoador()
-        + cadastrarBeneficiario()
-        + gerenciarEstoque()
+        id: int
+        nome: String
+        cnpj: String
+        localizacao: String
+        cidade: String
+        receberDoacao()
+        cadastrarMaterial()
+        cadastrarDoador()
+        cadastrarBeneficiario()
+        gerenciarEstoque()
     }
 
     class Deposito {
-        - id: int
-        - instituicaoId: int
-        - estoque: List~Material~
-        + registrarEntrada(material: Material, qte: int)
-        + registrarSaida(material: Material, qte: int)
+        id: int
+        instituicaoId: int
+        estoque: List~Material~
+        registrarEntrada(material: Material, qte: int)
+        registrarSaida(material: Material, qte: int)
     }
 
     class Material {
-        - id: int
-        - depositoId: int
-        - tipo: String
-        - quantidade: int
+        id: int
+        depositoId: int
+        tipo: String
+        quantidade: int
     }
 
     class Movimentacao {
-        - id: int
-        - materialId: int
-        - data: Date
-        - tipo: String  «entrada/saida»
-        - quantidade: int
+        id: int
+        materialId: int
+        data: Date
+        tipo: String
+        quantidade: int
     }
 
     class Doador {
-        - id: int
-        - instituicaoId: int
-        - nome: String
-        - contato: String
+        id: int
+        instituicaoId: int
+        nome: String
+        contato: String
     }
 
     class Beneficiario {
-        - id: int
-        - instituicaoId: int
-        - nome: String
-        - contato: String
+        id: int
+        instituicaoId: int
+        nome: String
+        contato: String
     }
 
     class Agenda {
-        - id: int
-        - instituicaoId: int
-        - dataHora: DateTime
-        - tipo: String  «coleta/entrega»
-        - status: String
+        id: int
+        instituicaoId: int
+        dataHora: DateTime
+        tipo: String
+        status: String
     }
 
     class Voluntario {
-        - id: int
-        - instituicaoId: int
-        - nome: String
-        - contato: String
+        id: int
+        instituicaoId: int
+        nome: String
+        contato: String
     }
 
     class Usuario {
-        - id: int
-        - instituicaoId: int
-        - username: String
-        - password: String
-        + autenticar()
+        id: int
+        instituicaoId: int
+        username: String
+        password: String
+        autenticar()
     }
 
     class Feedback {
-        - id: int
-        - instituicaoId: int
-        - comentario: String
-        - avaliacao: int
-        - data: Date
+        id: int
+        instituicaoId: int
+        comentario: String
+        avaliacao: int
+        data: Date
     }
 
     class Notificacao {
-        - id: int
-        - instituicaoId: int
-        - mensagem: String
-        - tipo: String  «email/SMS/alerta»
-        - dataEnvio: DateTime
+        id: int
+        instituicaoId: int
+        mensagem: String
+        tipo: String
+        dataEnvio: DateTime
     }
 
     class Relatorio {
-        - id: int
-        - instituicaoId: int
-        - dataGeracao: Date
-        - tipo: String  «semanal/mensal/etc»
+        id: int
+        instituicaoId: int
+        dataGeracao: Date
+        tipo: String
     }
 
     class Log {
-        - id: int
-        - instituicaoId: int
-        - acao: String
-        - dataHora: DateTime
+        id: int
+        instituicaoId: int
+        acao: String
+        dataHora: DateTime
     }
 
-    %% Relacionamentos
     Instituicao "1" --> "1" Deposito        : possui
     Deposito     "1" --> "*" Material       : armazena
     Material     "1" --> "*" Movimentacao  : registra
@@ -469,10 +468,8 @@ classDiagram
     Instituicao  "1" --> "*" Notificacao    : envia
     Instituicao  "1" --> "*" Relatorio      : gera
     Instituicao  "1" --> "*" Log            : registra
+```
 
----
-
-## 🎯 2. **Diagrama de Casos de Uso (Mermaid)**
 
 ```markdown
 
