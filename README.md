@@ -13,6 +13,18 @@ Unemat
     - [diagrama feito no white star(versão1)](#diagrama-feito-no-white-starversão1)
     - [diagrama feito no assistente de AI](#diagrama-feito-no-assistente-de-ai)
   - [3.2. Diagrama de casos de uso](#32-diagrama-de-casos-de-uso)
+  - [3.3. Diagrama de atividade](#33-diagrama-de-atividade)
+  - [3.4 Diagrama de componentes](#34-diagrama-de-componentes)
+  - [3.5 Diagrama  de implatação](#35-diagrama--de-implatação)
+  - [3.6 Diagrama C4](#36-diagrama-c4)
+    - [3.6.1 Diagrama C4 de contexto](#361-diagrama-c4-de-contexto)
+    - [3.6.2 Diagrama C4 de conteiner](#362-diagrama-c4-de-conteiner)
+    - [3.6.2 Diagrama C4 de componente](#362-diagrama-c4-de-componente)
+    - [3.6.3 Diagrama C4 de código](#363-diagrama-c4-de-código)
+  - [4. Histórias de usuário](#4-histórias-de-usuário)
+  - [5. Protótipo de telas](#5-protótipo-de-telas)
+  - [6. Diagram](#6-diagram)
+    - [A.1. Script SQL](#a1-script-sql)
     - [A.2. Dados ariticiais para teste de banco](#a2-dados-ariticiais-para-teste-de-banco)
 - [8. Cronograma e Gantt](#8-cronograma-e-gantt)
 - [9. Custos](#9-custos)
@@ -471,9 +483,128 @@ classDiagram
 ```
 
 
-```markdown
+
 
 ## 3.3. Diagrama de atividade 
+
+```markdown
+classDiagram
+    class Instituicao {
+        +id: INT
+        +nome: VARCHAR(255)
+        +cnpj: VARCHAR(20)
+        +localizacao: VARCHAR(255)
+        +cidade: VARCHAR(100)
+    }
+
+    class Deposito {
+        +id: INT
+        +instituicao_id: INT
+    }
+
+    class Material {
+        +id: INT
+        +deposito_id: INT
+        +tipo: VARCHAR(50)
+        +quantidade: INT
+    }
+
+    class Movimentacao {
+        +id: INT
+        +material_id: INT
+        +data: DATE
+        +tipo: ENUM('entrada','saida')
+        +quantidade: INT
+    }
+
+    class Doador {
+        +id: INT
+        +instituicao_id: INT
+        +nome: VARCHAR(255)
+        +contato: VARCHAR(255)
+    }
+
+    class Beneficiario {
+        +id: INT
+        +instituicao_id: INT
+        +nome: VARCHAR(255)
+        +contato: VARCHAR(255)
+    }
+
+    class Agenda {
+        +id: INT
+        +instituicao_id: INT
+        +dataHora: DATETIME
+        +tipo: ENUM('coleta','entrega')
+        +status: VARCHAR(50)
+    }
+
+    class Voluntario {
+        +id: INT
+        +instituicao_id: INT
+        +nome: VARCHAR(255)
+        +contato: VARCHAR(255)
+    }
+
+    class Usuario {
+        +id: INT
+        +instituicao_id: INT
+        +username: VARCHAR(100)
+        +password: VARCHAR(255)
+    }
+
+    class Feedback {
+        +id: INT
+        +instituicao_id: INT
+        +comentario: TEXT
+        +avaliacao: INT
+        +data: DATE
+    }
+
+    class Notificacao {
+        +id: INT
+        +instituicao_id: INT
+        +mensagem: TEXT
+        +tipo: VARCHAR(50)
+        +dataEnvio: DATETIME
+    }
+
+    class Relatorio {
+        +id: INT
+        +instituicao_id: INT
+        +dataGeracao: DATE
+        +tipo: VARCHAR(50)
+    }
+
+    class Pagamento {
+        +id: INT
+        +instituicao_id: INT
+        +valor: DECIMAL(10,2)
+        +data: DATE
+    }
+
+    class Log {
+        +id: INT
+        +instituicao_id: INT
+        +acao: TEXT
+        +dataHora: DATETIME
+    }
+
+    Instituicao "1" --> "1" Deposito     : possui
+    Deposito     "1" --> "*" Material    : armazena
+    Material     "1" --> "*" Movimentacao : registra
+    Instituicao  "1" --> "*" Doador      : cadastra
+    Instituicao  "1" --> "*" Beneficiario: cadastra
+    Instituicao  "1" --> "*" Agenda      : agenda
+    Instituicao  "1" --> "*" Voluntario  : gerencia
+    Instituicao  "1" --> "*" Usuario     : possui
+    Instituicao  "1" --> "*" Feedback    : recebe
+    Instituicao  "1" --> "*" Notificacao : envia
+    Instituicao  "1" --> "*" Relatorio   : gera
+    Instituicao  "1" --> "*" Pagamento   : integra
+    Instituicao  "1" --> "*" Log         : registra
+
+ ```
 
 
 ## 3.4 Diagrama de componentes 
