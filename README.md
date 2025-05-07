@@ -690,6 +690,37 @@ flowchart TD
 
 
 ### 3.6.3 Diagrama C4 de componente
+
+```mermaid
+flowchart TD
+    subgraph API_Backend ["API Backend (Node.js)"]
+        Auth["🔐 AuthController - Autenticação e controle de acesso"]
+        Donation["🎁 DonationController - Gerenciamento de doações"]
+        Inventory["📦 InventoryService - Controle de estoque"]
+        Scheduling["🗓️ SchedulingService - Agendamento de coletas/entregas"]
+        Notification["📨 NotificationService - Envio de e-mails e alertas"]
+        Payment["💳 PaymentGatewayAdapter - Integração com gateway de pagamento"]
+    end
+
+    subgraph External_Services ["Serviços Externos"]
+        EmailAPI["📧 Email API"]
+        PagamentoAPI["💰 Gateway de Pagamento"]
+        RedeSocial["🌐 Redes Sociais"]
+    end
+
+    subgraph Database ["Banco de Dados"]
+        DB["🗄️ MySQL Database"]
+    end
+
+    Auth --> DB
+    Donation --> DB
+    Inventory --> DB
+    Scheduling --> DB
+    Notification --> EmailAPI
+    Payment --> PagamentoAPI
+    Donation --> RedeSocial
+```
+
 ### 3.6.4 Diagrama C4 de código
 
 ## 4. Histórias de usuário
