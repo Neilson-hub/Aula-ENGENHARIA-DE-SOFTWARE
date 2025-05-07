@@ -609,6 +609,61 @@ classDiagram
 
 ## 3.4 Diagrama de componentes 
 
+```mermaid
+graph TB
+  %% Front-End Component
+  subgraph Front-End
+    UI[Web UI <<component>>]
+  end
+
+  %% Back-End Components
+  subgraph Back-End
+    APIGW[API Gateway <<component>>]
+    AuthSvc[Auth Service <<component>>]
+    DonationSvc[Donation Service <<component>>]
+    InventorySvc[Inventory Service <<component>>]
+    SchedulingSvc[Scheduling Service <<component>>]
+    NotificationSvc[Notification Service <<component>>]
+    ReportingSvc[Reporting Service <<component>>]
+    FeedbackSvc[Feedback Service <<component>>]
+  end
+
+  %% Integration Components
+  subgraph Integrações
+    SocialInt[Social Media Integration <<component>>]
+    PaymentInt[Payment Integration <<component>>]
+  end
+
+  %% Persistence
+  subgraph BancoDeDados
+    DB[(Database)]
+  end
+
+  %% Fluxo de chamadas
+  UI --> APIGW
+  APIGW --> AuthSvc
+  APIGW --> DonationSvc
+  APIGW --> InventorySvc
+  APIGW --> SchedulingSvc
+  APIGW --> NotificationSvc
+  APIGW --> ReportingSvc
+  APIGW --> FeedbackSvc
+
+  %% Integrações externas
+  DonationSvc --> SocialInt
+  DonationSvc --> PaymentInt
+
+  %% Persistência de dados
+  AuthSvc --> DB
+  DonationSvc --> DB
+  InventorySvc --> DB
+  SchedulingSvc --> DB
+  NotificationSvc --> DB
+  ReportingSvc --> DB
+  FeedbackSvc --> DB
+
+ ```
+
 ## 3.5 Diagrama  de implatação 
 
 
