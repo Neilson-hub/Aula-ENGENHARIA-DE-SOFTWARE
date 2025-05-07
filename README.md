@@ -758,6 +758,47 @@ flowchart TD
 
 
 ## 4. Histórias de usuário
+
+🧾 Histórias de Usuário – Sistema de Doações
+💠 1. Como doador:
+Como um doador,
+Quero realizar uma doação de materiais através da plataforma,
+Para que os itens sejam direcionados a quem precisa.
+
+💠 2. Como beneficiário:
+Como um beneficiário,
+Quero visualizar os materiais disponíveis para doação,
+Para que eu possa solicitar o que está em falta.
+
+💠 3. Como administrador:
+Como um administrador,
+Quero cadastrar e gerenciar usuários e doações,
+Para manter o controle do sistema e garantir o funcionamento adequado.
+
+💠 4. Como voluntário:
+Como um voluntário,
+Quero acessar minha agenda de coletas e entregas,
+Para organizar meu tempo e cumprir as atividades programadas.
+
+💠 5. Como sistema:
+Como sistema,
+Quero enviar notificações automáticas quando o estoque estiver baixo,
+Para alertar os administradores sobre a necessidade de reposição.
+
+💠 6. Como doador:
+Como um doador,
+Quero receber uma confirmação por e-mail após cada doação,
+Para ter certeza de que minha contribuição foi registrada.
+
+💠 7. Como beneficiário:
+Como um beneficiário,
+Quero agendar uma entrega dos materiais solicitados,
+Para receber no momento mais adequado.
+
+💠 8. Como administrador:
+Como um administrador,
+Quero gerar relatórios de entrada e saída de materiais,
+Para acompanhar o desempenho e a movimentação do estoque.
 ## 5. Protótipo de telas 
 ## 6. Diagram
 
