@@ -584,8 +584,6 @@ graph TB
 ## 3.5 Diagrama  de implatação 
 O diagrama de implantação serve para representar a arquitetura física de um sistema, mostrando como os componentes de software são distribuídos entre os nós de hardware (servidores, dispositivos, redes), além das conexões entre esses elementos. Ele é fundamental para visualizar a infraestrutura necessária para executar o sistema, evidenciando aspectos como servidores, bancos de dados, dispositivos móveis e a comunicação entre eles. Esse diagrama é especialmente útil nas fases de planejamento da infraestrutura, implantação e manutenção de sistemas distribuídos ou baseados em nuvem.
 ```mermaid
-graph TB
-```mermaid
 graph TD
   subgraph Client [Nó: Cliente]
     Browser[Browser Web/Mobile]
@@ -617,9 +615,8 @@ graph TD
   Worker --> MySQL
   API --> SocialAPI
   API --> PaymentAPI
-```
 
-
+ ```
 ## 3.6 Diagrama C4
 
 ### 3.6.1 Diagrama C4 de contexto 
