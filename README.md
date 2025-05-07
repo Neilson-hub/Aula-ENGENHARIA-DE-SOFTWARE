@@ -352,37 +352,124 @@ erDiagram
 
 ## 3.2. Diagrama de casos de uso 
 
-```mermaid
 classDiagram
+    class Instituicao {
+        - id: int
+        - nome: String
+        - cnpj: String
+        - localizacao: String
+        - cidade: String
+        + receberDoacao()
+        + cadastrarMaterial()
+        + cadastrarDoador()
+        + cadastrarBeneficiario()
+        + gerenciarEstoque()
+    }
+
+    class Deposito {
+        - id: int
+        - instituicaoId: int
+        - estoque: List~Material~
+        + registrarEntrada(material: Material, qte: int)
+        + registrarSaida(material: Material, qte: int)
+    }
+
+    class Material {
+        - id: int
+        - depositoId: int
+        - tipo: String
+        - quantidade: int
+    }
+
+    class Movimentacao {
+        - id: int
+        - materialId: int
+        - data: Date
+        - tipo: String  «entrada/saida»
+        - quantidade: int
+    }
+
+    class Doador {
+        - id: int
+        - instituicaoId: int
+        - nome: String
+        - contato: String
+    }
+
+    class Beneficiario {
+        - id: int
+        - instituicaoId: int
+        - nome: String
+        - contato: String
+    }
+
+    class Agenda {
+        - id: int
+        - instituicaoId: int
+        - dataHora: DateTime
+        - tipo: String  «coleta/entrega»
+        - status: String
+    }
+
+    class Voluntario {
+        - id: int
+        - instituicaoId: int
+        - nome: String
+        - contato: String
+    }
+
     class Usuario {
-        +String nome
-        +String email
-        +String senha
-        +login()
-        +logout()
+        - id: int
+        - instituicaoId: int
+        - username: String
+        - password: String
+        + autenticar()
     }
 
-    class Administrador {
-        +gerenciarUsuarios()
-        +gerenciarSistema()
+    class Feedback {
+        - id: int
+        - instituicaoId: int
+        - comentario: String
+        - avaliacao: int
+        - data: Date
     }
 
-    class Cliente {
-        +visualizarProdutos()
-        +fazerPedido()
+    class Notificacao {
+        - id: int
+        - instituicaoId: int
+        - mensagem: String
+        - tipo: String  «email/SMS/alerta»
+        - dataEnvio: DateTime
     }
 
-    class Pedido {
-        +int id
-        +Data data
-        +realizarPagamento()
+    class Relatorio {
+        - id: int
+        - instituicaoId: int
+        - dataGeracao: Date
+        - tipo: String  «semanal/mensal/etc»
     }
 
-    Usuario <|-- Administrador
-    Usuario <|-- Cliente
-    Cliente --> Pedido
+    class Log {
+        - id: int
+        - instituicaoId: int
+        - acao: String
+        - dataHora: DateTime
+    }
 
-```
+    %% Relacionamentos
+    Instituicao "1" --> "1" Deposito        : possui
+    Deposito     "1" --> "*" Material       : armazena
+    Material     "1" --> "*" Movimentacao  : registra
+    Instituicao  "1" --> "*" Doador         : cadastra
+    Instituicao  "1" --> "*" Beneficiario   : cadastra
+    Instituicao  "1" --> "*" Agenda         : agenda
+    Instituicao  "1" --> "*" Voluntario     : gerencia
+    Instituicao  "1" --> "*" Usuario        : possui
+    Instituicao  "1" --> "*" Feedback       : recebe
+    Instituicao  "1" --> "*" Notificacao    : envia
+    Instituicao  "1" --> "*" Relatorio      : gera
+    Instituicao  "1" --> "*" Log            : registra
+
 ---
 
 ## 🎯 2. **Diagrama de Casos de Uso (Mermaid)**
