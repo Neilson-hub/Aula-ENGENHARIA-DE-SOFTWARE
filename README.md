@@ -585,41 +585,40 @@ graph TB
 O diagrama de implantação serve para representar a arquitetura física de um sistema, mostrando como os componentes de software são distribuídos entre os nós de hardware (servidores, dispositivos, redes), além das conexões entre esses elementos. Ele é fundamental para visualizar a infraestrutura necessária para executar o sistema, evidenciando aspectos como servidores, bancos de dados, dispositivos móveis e a comunicação entre eles. Esse diagrama é especialmente útil nas fases de planejamento da infraestrutura, implantação e manutenção de sistemas distribuídos ou baseados em nuvem.
 ```mermaid
 graph TB
-  %% Nós de hardware/infraestrutura
+```mermaid
+graph TD
   subgraph Client [Nó: Cliente]
     Browser[Browser Web/Mobile]
   end
 
   subgraph WebServer [Nó: Servidor Web]
-    Nginx[Nginx<br/><i>Reverse Proxy</i>]
-    Frontend[Front-End estático<br/>(HTML/CSS/JS)]
+    Nginx[Nginx (Reverse Proxy)]
+    Frontend[Front-End (HTML/CSS/JS)]
   end
 
   subgraph AppServer [Nó: Servidor de Aplicação]
-    API[API Service<br/>(Node.js/Python/etc.)]
-    Worker[Worker de Tarefas<br/>(fila/background)]
+    API[API Service]
+    Worker[Worker de Tarefas]
   end
 
-  subgraph DBServer [Nó: Servidor de Banco]
+  subgraph DBServer [Nó: Banco de Dados]
     MySQL[(MySQL Database)]
   end
 
-  subgraph Integrations [Nó: Serviços Externos]
+  subgraph External [Serviços Externos]
     SocialAPI[API de Redes Sociais]
     PaymentAPI[API de Pagamentos]
   end
 
-  %% Comunicação entre nós
-  Browser      --> Frontend
-  Frontend     --> Nginx
-  Nginx        --> API
-  API          --> MySQL
-  Worker       --> MySQL
+  Browser --> Nginx
+  Nginx --> Frontend
+  Nginx --> API
+  API --> MySQL
+  Worker --> MySQL
+  API --> SocialAPI
+  API --> PaymentAPI
+```
 
-  %% Integrações externas
-  API          --> SocialAPI
-  API          --> PaymentAPI
- ```
 
 ## 3.6 Diagrama C4
 
