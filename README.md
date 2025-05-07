@@ -624,26 +624,29 @@ graph TD
 C4Context
 title Sistema de Doações - Diagrama de Contexto
 
-Person(voluntario, "Voluntário", "Coleta e entrega de materiais")
-Person(doador, "Doador", "Pessoa física ou empresa que doa materiais")
-Person(beneficiario, "Beneficiário", "Pessoa ou instituição que recebe doações")
-Person(admin, "Administrador", "Gere e monitora todo o sistema")
+Person(voluntario, "Voluntário", "Realiza coletas e entregas de materiais")
+Person(doador, "Doador", "Pessoa física ou jurídica que doa materiais de construção")
+Person(beneficiario, "Beneficiário", "Recebe doações por meio do sistema")
+Person(admin, "Administrador", "Gerencia o sistema e supervisiona operações")
 
-System(sistemaDoacoes, "Sistema de Doações", "Gerencia doações, estoques e agendamentos de coleta/entrega")
+System(sistemaDoacoes, "Sistema de Doações", "Gerencia doações, estoque, agendamentos, usuários e notificações")
 
-System_Ext(redeSocial, "Rede Social", "Plataforma para divulgação de campanhas")
-System_Ext(gatewayPagamento, "Gateway de Pagamento", "Processa doações financeiras")
-System_Ext(emailAPI, "Serviço de Email", "Envia notificações automáticas")
+System_Ext(redeSocial, "Plataforma de Redes Sociais", "Usada para divulgar campanhas e captar doações")
+System_Ext(servicoEmail, "Serviço de E-mail", "Envia notificações e confirmações")
+System_Ext(gatewayPagamento, "Gateway de Pagamento", "Processa doações financeiras de doadores")
+System_Ext(analytics, "Sistema de Relatórios", "Gera dashboards e KPIs para gestores")
 
-doador --> sistemaDoacoes : Faz doações
-beneficiario --> sistemaDoacoes : Recebe doações
-voluntario --> sistemaDoacoes : Executa coletas/entregas
-admin --> sistemaDoacoes : Gerencia dados e operações
+doador --> sistemaDoacoes : Realiza doações
+beneficiario --> sistemaDoacoes : Recebe materiais doados
+voluntario --> sistemaDoacoes : Participa da logística
+admin --> sistemaDoacoes : Gera relatórios e gerencia dados
 
-sistemaDoacoes --> redeSocial : Publica campanhas
-sistemaDoacoes --> gatewayPagamento : Processa pagamentos
-sistemaDoacoes --> emailAPI : Envia alertas e confirmações
+sistemaDoacoes --> redeSocial : Divulga campanhas
+sistemaDoacoes --> servicoEmail : Envia notificações automáticas
+sistemaDoacoes --> gatewayPagamento : Solicita processamento de doações financeiras
+sistemaDoacoes --> analytics : Compartilha dados analíticos
 ```
+
 
 
 ### 3.6.2 Diagrama C4 de conteiner
