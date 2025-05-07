@@ -19,8 +19,8 @@ Unemat
   - [3.6 Diagrama C4](#36-diagrama-c4)
     - [3.6.1 Diagrama C4 de contexto](#361-diagrama-c4-de-contexto)
     - [3.6.2 Diagrama C4 de conteiner](#362-diagrama-c4-de-conteiner)
-    - [3.6.2 Diagrama C4 de componente](#362-diagrama-c4-de-componente)
-    - [3.6.3 Diagrama C4 de código](#363-diagrama-c4-de-código)
+    - [3.6.3 Diagrama C4 de componente](#363-diagrama-c4-de-componente)
+    - [3.6.4 Diagrama C4 de código](#364-diagrama-c4-de-código)
   - [4. Histórias de usuário](#4-histórias-de-usuário)
   - [5. Protótipo de telas](#5-protótipo-de-telas)
   - [6. Diagram](#6-diagram)
@@ -651,43 +651,45 @@ flowchart TD
 
 ### 3.6.2 Diagrama C4 de conteiner
 ```mermaid
-C4Container
-title Sistema de Doações - Diagrama de Containers
+flowchart TD
+    subgraph Usuários
+        Doador["👤 Doador"]
+        Beneficiario["👤 Beneficiário"]
+        Admin["👤 Administrador"]
+    end
 
-Person(admin, "Administrador", "Gerencia o sistema e acessa relatórios")
-Person(doador, "Doador", "Realiza doações pelo site")
-Person(beneficiario, "Beneficiário", "Recebe materiais doados")
+    subgraph Sistema de Doações
+        WebApp["🖥️ Aplicação Web (Vue.js)"]
+        API["🔗 API Backend (Node.js)"]
+        BD["🗄️ Banco de Dados (MySQL)"]
+        Worker["⚙️ Worker de Tarefas (Node.js)"]
+        Notificacoes["📨 Serviço de Notificação (Python)"]
+    end
 
-System_Boundary(s1, "Sistema de Doações") {
-    
-    Container(webApp, "Aplicação Web", "Vue.js", "Interface usada por doadores, beneficiários e voluntários")
-    Container(api, "API Backend", "Node.js", "Expõe os serviços de negócio do sistema")
-    Container(db, "Banco de Dados", "MySQL", "Armazena dados de usuários, materiais, doações e agendamentos")
-    Container(notificationService, "Serviço de Notificação", "Python", "Envia emails e alertas sobre movimentações")
-    Container(worker, "Agendador/Worker", "Node.js", "Processa tarefas em segundo plano como coleta e entrega")
-}
+    subgraph Integrações
+        EmailAPI["📧 API de E-mail"]
+        Gateway["💳 Gateway de Pagamento"]
+        Social["📢 Redes Sociais"]
+    end
 
-System_Ext(emailAPI, "Serviço de E-mail", "Envia notificações para os usuários")
-System_Ext(paymentGateway, "Gateway de Pagamento", "Processa doações financeiras")
-System_Ext(socialMedia, "Redes Sociais", "Plataforma para divulgação de campanhas")
+    %% Interações
+    Doador --> WebApp
+    Beneficiario --> WebApp
+    Admin --> WebApp
 
-doador --> webApp : Acessa e realiza doações
-beneficiario --> webApp : Consulta entregas
-admin --> webApp : Acompanha o sistema
-
-webApp --> api : Consome API REST
-api --> db : Leitura e gravação de dados
-api --> notificationService : Aciona notificações
-api --> worker : Dispara tarefas em background
-worker --> db : Atualiza status de coletas/entregas
-
-notificationService --> emailAPI : Envia e-mails
-api --> paymentGateway : Processa pagamentos
-api --> socialMedia : Publica atualizações
+    WebApp --> API
+    API --> BD
+    API --> Worker
+    Worker --> BD
+    API --> Notificacoes
+    Notificacoes --> EmailAPI
+    API --> Gateway
+    API --> Social
 ```
 
-### 3.6.2 Diagrama C4 de componente
-### 3.6.3 Diagrama C4 de código
+
+### 3.6.3 Diagrama C4 de componente
+### 3.6.4 Diagrama C4 de código
 
 ## 4. Histórias de usuário
 ## 5. Protótipo de telas 
