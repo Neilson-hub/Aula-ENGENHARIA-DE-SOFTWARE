@@ -803,6 +803,8 @@ Para acompanhar o desempenho e a movimentação do estoque.
 ## 5. Protótipo de telas 
 ### 5.1. Login
 ![login](https://github.com/Neilson-hub/Aula-ENGENHARIA-DE-SOFTWARE/blob/main/imagem/login.png)
+![cadastro](https://github.com/Neilson-hub/Aula-ENGENHARIA-DE-SOFTWARE/blob/main/imagem/cadastro.png)
+
 ## 6. Diagram
 
 
