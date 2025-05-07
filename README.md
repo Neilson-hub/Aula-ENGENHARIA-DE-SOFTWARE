@@ -724,32 +724,38 @@ flowchart TD
 ### 3.6.4 Diagrama C4 de código
 ```mermaid
 flowchart TD
-  DonationController["DonationController.js"]
+  MaterialController["MaterialController.js"]
 
   subgraph Módulos Internos
-    validate["validateDonation(input)"]
-    save["saveDonation(data)"]
-    notify["notifyUser(donor, message)"]
-    schedule["schedulePickup(donationId)"]
+    validarEntrada["validarMaterial(dados)"]
+    registrar["registrarMaterial(material)"]
+    movimentar["registrarMovimentacao(materialId, tipo, quantidade)"]
+    agendarEntrega["agendarEntrega(beneficiario, data)"]
+    notificar["notificarAdministrador(mensagem)"]
   end
 
   subgraph Serviços Externos
-    InventoryService["InventoryService"]
-    NotificationService["NotificationService"]
-    SchedulingService["SchedulingService"]
-    Database["MySQL Database"]
+    EstoqueService["EstoqueService"]
+    MovimentacaoService["MovimentacaoService"]
+    AgendaService["AgendaService"]
+    NotificacaoService["NotificacaoService"]
+    BancoDeDados["MySQL Database"]
   end
 
-  DonationController --> validate
-  DonationController --> save
-  DonationController --> notify
-  DonationController --> schedule
+  MaterialController --> validarEntrada
+  MaterialController --> registrar
+  MaterialController --> movimentar
+  MaterialController --> agendarEntrega
+  MaterialController --> notificar
 
-  save --> Database
-  schedule --> SchedulingService
-  notify --> NotificationService
-  save --> InventoryService
+  registrar --> BancoDeDados
+  movimentar --> MovimentacaoService
+  movimentar --> BancoDeDados
+  agendarEntrega --> AgendaService
+  notificar --> NotificacaoService
+  registrar --> EstoqueService
 ```
+
 
 ## 4. Histórias de usuário
 ## 5. Protótipo de telas 
