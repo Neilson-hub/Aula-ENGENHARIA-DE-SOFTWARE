@@ -487,7 +487,7 @@ classDiagram
 
 ## 3.3. Diagrama de atividade 
 
-```markdown
+```mermaid
 classDiagram
     class Instituicao {
         +id: INT
