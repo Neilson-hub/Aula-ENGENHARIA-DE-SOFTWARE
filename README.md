@@ -13,6 +13,7 @@ Unemat
     - [diagrama feito no white star(versão1)](#diagrama-feito-no-white-starversão1)
     - [diagrama feito no assistente de AI](#diagrama-feito-no-assistente-de-ai)
   - [3.2. Diagrama de casos de uso](#32-diagrama-de-casos-de-uso)
+  - [🎯 2. **Diagrama de Casos de Uso (Mermaid)**](#-2-diagrama-de-casos-de-uso-mermaid)
   - [3.3. Diagrama de atividade](#33-diagrama-de-atividade)
   - [3.4 Diagrama de componentes](#34-diagrama-de-componentes)
   - [3.5 Diagrama  de implatação](#35-diagrama--de-implatação)
@@ -363,7 +364,74 @@ erDiagram
 
 ## 3.2. Diagrama de casos de uso 
 
+```mermaid
+classDiagram
+    class Usuario {
+        +String nome
+        +String email
+        +String senha
+        +login()
+        +logout()
+    }
 
+    class Administrador {
+        +gerenciarUsuarios()
+        +gerenciarSistema()
+    }
+
+    class Cliente {
+        +visualizarProdutos()
+        +fazerPedido()
+    }
+
+    class Pedido {
+        +int id
+        +Data data
+        +realizarPagamento()
+    }
+
+    Usuario <|-- Administrador
+    Usuario <|-- Cliente
+    Cliente --> Pedido
+
+```
+---
+
+## 🎯 2. **Diagrama de Casos de Uso (Mermaid)**
+
+```markdown
+```mermaid
+%% Diagrama de Casos de Uso
+%% Sistema de Pedidos Online
+
+%% Use-case diagram
+%% Ator: Cliente, Administrador
+
+%% Use-case diagram
+%% Casos de uso: Login, Visualizar Produtos, Realizar Pedido, Gerenciar Usuários
+
+%% Mermaid code
+%% Para renderizar no GitHub ou GitLab com plugin de Mermaid
+
+%% Início do diagrama
+%% Use graph TD para Mermaid compatível
+
+%% Atores com retângulo
+%% Casos de uso com parênteses
+
+%% Mermaid usa sintaxe visual simples
+
+%% Diagrama
+graph TD
+    Cliente((Cliente)) --> (Login)
+    Cliente --> (Visualizar Produtos)
+    Cliente --> (Realizar Pedido)
+
+    Administrador((Administrador)) --> (Login)
+    Administrador --> (Gerenciar Usuários)
+    Administrador --> (Visualizar Relatórios)
+
+```
 ## 3.3. Diagrama de atividade 
 
 
