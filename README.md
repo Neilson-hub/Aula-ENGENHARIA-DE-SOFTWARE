@@ -688,6 +688,7 @@ flowchart TD
 ```
 
 
+
 ### 3.6.3 Diagrama C4 de componente
 ### 3.6.4 Diagrama C4 de código
 
