@@ -14,18 +14,6 @@ Unemat
     - [diagrama feito no assistente de AI](#diagrama-feito-no-assistente-de-ai)
   - [3.2. Diagrama de casos de uso](#32-diagrama-de-casos-de-uso)
   - [🎯 2. **Diagrama de Casos de Uso (Mermaid)**](#-2-diagrama-de-casos-de-uso-mermaid)
-  - [3.3. Diagrama de atividade](#33-diagrama-de-atividade)
-  - [3.4 Diagrama de componentes](#34-diagrama-de-componentes)
-  - [3.5 Diagrama  de implatação](#35-diagrama--de-implatação)
-  - [3.6 Diagrama C4](#36-diagrama-c4)
-    - [3.6.1 Diagrama C4 de contexto](#361-diagrama-c4-de-contexto)
-    - [3.6.2 Diagrama C4 de conteiner](#362-diagrama-c4-de-conteiner)
-    - [3.6.2 Diagrama C4 de componente](#362-diagrama-c4-de-componente)
-    - [3.6.3 Diagrama C4 de código](#363-diagrama-c4-de-código)
-  - [4. Histórias de usuário](#4-histórias-de-usuário)
-  - [5. Protótipo de telas](#5-protótipo-de-telas)
-  - [6. Diagram](#6-diagram)
-    - [A.1. Script SQL](#a1-script-sql)
     - [A.2. Dados ariticiais para teste de banco](#a2-dados-ariticiais-para-teste-de-banco)
 - [8. Cronograma e Gantt](#8-cronograma-e-gantt)
 - [9. Custos](#9-custos)
@@ -400,38 +388,7 @@ classDiagram
 ## 🎯 2. **Diagrama de Casos de Uso (Mermaid)**
 
 ```markdown
-```mermaid
-%% Diagrama de Casos de Uso
-%% Sistema de Pedidos Online
 
-%% Use-case diagram
-%% Ator: Cliente, Administrador
-
-%% Use-case diagram
-%% Casos de uso: Login, Visualizar Produtos, Realizar Pedido, Gerenciar Usuários
-
-%% Mermaid code
-%% Para renderizar no GitHub ou GitLab com plugin de Mermaid
-
-%% Início do diagrama
-%% Use graph TD para Mermaid compatível
-
-%% Atores com retângulo
-%% Casos de uso com parênteses
-
-%% Mermaid usa sintaxe visual simples
-
-%% Diagrama
-graph TD
-    Cliente((Cliente)) --> (Login)
-    Cliente --> (Visualizar Produtos)
-    Cliente --> (Realizar Pedido)
-
-    Administrador((Administrador)) --> (Login)
-    Administrador --> (Gerenciar Usuários)
-    Administrador --> (Visualizar Relatórios)
-
-```
 ## 3.3. Diagrama de atividade 
 
 
