@@ -490,6 +490,52 @@ O diagrama de atividades é utilizado para modelar o fluxo de controle ou de ati
 
 
 ```mermaid
+flowchart TB
+    %% Início do fluxo
+    start([Início do Fluxo de Doação])
+
+    %% Componentes Front-End
+    subgraph Front-End
+      UI[Web UI]
+    end
+
+    %% Componentes Back-End
+    subgraph Back-End
+      APIGW[API Gateway]
+      DonationSvc[Serviço de Doações]
+      InventorySvc[Serviço de Estoque]
+      NotificationSvc[Serviço de Notificações]
+    end
+
+    %% Integrações Externas
+    subgraph Integrações
+      SocialInt[Redes Sociais]
+      PaymentInt[Plataforma de Pagamentos]
+    end
+
+    %% Persistência
+    subgraph BancoDeDados
+      DB[(Banco de Dados)]
+    end
+
+    %% Fluxo de atividades
+    start --> UI
+    UI --> APIGW
+    APIGW --> DonationSvc
+    DonationSvc --> DB
+    DonationSvc --> InventorySvc
+    InventorySvc --> DB
+    DonationSvc --> NotificationSvc
+    NotificationSvc --> DB
+    NotificationSvc --> UI
+    DonationSvc --> SocialInt
+    DonationSvc --> PaymentInt
+    SocialInt --> DB
+    PaymentInt --> DB
+    UI --> end([Fim do Fluxo])
+```
+
+```mermaid
 classDiagram
     class Instituicao {
         +id: INT
