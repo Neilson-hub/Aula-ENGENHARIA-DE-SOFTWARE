@@ -491,35 +491,34 @@ O diagrama de atividades é utilizado para modelar o fluxo de controle ou de ati
 
 ```mermaid
 flowchart TD
-    Start([Início])  
-    Start --> PreencherForm[Preencher formulário de doação]  
+  Start([Início])  
+  Start --> PreencherForm[Preencher formulário de doação]  
 
-    PreencherForm --> ValidarDoador{Doador cadastrado?}  
-    ValidarDoador -- Não --> CadastrarDoador[Cadastrar Doador]  
-    CadastrarDoador --> RegistrarDoacao[Registrar doação de materiais]  
-    ValidarDoador -- Sim --> RegistrarDoacao  
+  PreencherForm --> ValidarDoador{Doador cadastrado?}  
+  ValidarDoador -- Não --> CadastrarDoador[Cadastrar Doador]  
+  CadastrarDoador --> RegistrarDoacao[Registrar doação]  
+  ValidarDoador -- Sim --> RegistrarDoacao  
 
-    RegistrarDoacao --> AgendarColeta[Agendar coleta]  
-    AgendarColeta --> EfetuarColeta[Efetuar coleta de materiais]  
-    EfetuarColeta --> MovimentacaoEntrada[Registrar movimentação (entrada)]  
-    MovimentacaoEntrada --> AtualizarEstoque[Atualizar estoque]  
+  RegistrarDoacao --> AgendarColeta[Agendar coleta]  
+  AgendarColeta --> EfetuarColeta[Coletar materiais]  
+  EfetuarColeta --> MovEntrada[Registrar entrada no depósito]  
+  MovEntrada --> AtualizarEstoque[Atualizar estoque]  
 
-    AtualizarEstoque --> EstoqueCritico{Estoque abaixo do mínimo?}  
-    EstoqueCritico -- Sim --> EnviarNotificacao[Enviar notificação crítica]  
-    EstoqueCritico -- Não --> AguardarEntrega  
+  AtualizarEstoque --> EstoqueCritico{Estoque abaixo do mínimo?}  
+  EstoqueCritico -- Sim --> EnviarNotificacao[Enviar notificação crítica]  
+  EstoqueCritico -- Não --> EntregaBenef[Entregar ao beneficiário]  
 
-    AguardarEntrega[Entregar ao beneficiário]  
-    AguardarEntrega --> ConfirmarEntrega{Entrega confirmada?}  
-    ConfirmarEntrega -- Não --> RegistrarLogErro[Registrar log de falha na entrega]  
-    RegistrarLogErro --> End([Fim])  
-    ConfirmarEntrega -- Sim --> ColetarFeedback[Coletar feedback do beneficiário]  
+  EntregaBenef --> ConfirmarEntrega{Entrega confirmada?}  
+  ConfirmarEntrega -- Não --> LogFalha[Registrar falha de entrega]  
+  LogFalha --> End([Fim])  
+  ConfirmarEntrega -- Sim --> ColetarFeedback[Coletar feedback]  
 
-    ColetarFeedback --> RegistrarFeedback[Registrar feedback]  
-    RegistrarFeedback --> GerarRelatorio[Gerar relatório de doações]  
-    EnviarNotificacao --> GerarRelatorio  
+  ColetarFeedback --> RegistrarFeedback[Registrar feedback]  
+  RegistrarFeedback --> GerarRelatorio[Gerar relatório]  
+  EnviarNotificacao --> GerarRelatorio  
 
-    GerarRelatorio --> RegistrarLog[Registrar log de atividade]  
-    RegistrarLog --> End([Fim])  
+  GerarRelatorio --> RegistrarLog[Registrar log de atividade]  
+  RegistrarLog --> End
 
 
 
