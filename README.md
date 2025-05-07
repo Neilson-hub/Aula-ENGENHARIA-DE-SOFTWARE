@@ -490,170 +490,22 @@ O diagrama de atividades é utilizado para modelar o fluxo de controle ou de ati
 
 
 ```mermaid
-flowchart TB
-    %% Início do fluxo
-    start([Início do Fluxo de Doação])
+flowchart TD
+    start((Início))
+    start --> FillForm[Preencher formulário de doação]
+    FillForm --> Review{Doação aprovada?}
+    Review -- Não --> NotifyReject[Notificar rejeição ao doador]
+    NotifyReject --> end((Fim))
+    Review -- Sim --> SchedulePickup[Agendar coleta]
+    SchedulePickup --> Pickup[Coleta dos materiais]
+    Pickup --> Receive[Registrar entrada no depósito]
+    Receive --> UpdateStock[Atualizar estoque]
+    UpdateStock --> CheckLow{Estoque baixo?}
+    CheckLow -- Sim --> SendAlert[Enviar alerta ao administrador]
+    CheckLow -- Não --> end
 
-    %% Componentes Front-End
-    subgraph Front-End
-      UI[Web UI]
-    end
-
-    %% Componentes Back-End
-    subgraph Back-End
-      APIGW[API Gateway]
-      DonationSvc[Serviço de Doações]
-      InventorySvc[Serviço de Estoque]
-      NotificationSvc[Serviço de Notificações]
-    end
-
-    %% Integrações Externas
-    subgraph Integrações
-      SocialInt[Redes Sociais]
-      PaymentInt[Plataforma de Pagamentos]
-    end
-
-    %% Persistência
-    subgraph BancoDeDados
-      DB[(Banco de Dados)]
-    end
-
-    %% Fluxo de atividades
-    start --> UI
-    UI --> APIGW
-    APIGW --> DonationSvc
-    DonationSvc --> DB
-    DonationSvc --> InventorySvc
-    InventorySvc --> DB
-    DonationSvc --> NotificationSvc
-    NotificationSvc --> DB
-    NotificationSvc --> UI
-    DonationSvc --> SocialInt
-    DonationSvc --> PaymentInt
-    SocialInt --> DB
-    PaymentInt --> DB
-    UI --> end([Fim do Fluxo])
-```
-
-```mermaid
-classDiagram
-    class Instituicao {
-        +id: INT
-        +nome: VARCHAR(255)
-        +cnpj: VARCHAR(20)
-        +localizacao: VARCHAR(255)
-        +cidade: VARCHAR(100)
-    }
-
-    class Deposito {
-        +id: INT
-        +instituicao_id: INT
-    }
-
-    class Material {
-        +id: INT
-        +deposito_id: INT
-        +tipo: VARCHAR(50)
-        +quantidade: INT
-    }
-
-    class Movimentacao {
-        +id: INT
-        +material_id: INT
-        +data: DATE
-        +tipo: ENUM('entrada','saida')
-        +quantidade: INT
-    }
-
-    class Doador {
-        +id: INT
-        +instituicao_id: INT
-        +nome: VARCHAR(255)
-        +contato: VARCHAR(255)
-    }
-
-    class Beneficiario {
-        +id: INT
-        +instituicao_id: INT
-        +nome: VARCHAR(255)
-        +contato: VARCHAR(255)
-    }
-
-    class Agenda {
-        +id: INT
-        +instituicao_id: INT
-        +dataHora: DATETIME
-        +tipo: ENUM('coleta','entrega')
-        +status: VARCHAR(50)
-    }
-
-    class Voluntario {
-        +id: INT
-        +instituicao_id: INT
-        +nome: VARCHAR(255)
-        +contato: VARCHAR(255)
-    }
-
-    class Usuario {
-        +id: INT
-        +instituicao_id: INT
-        +username: VARCHAR(100)
-        +password: VARCHAR(255)
-    }
-
-    class Feedback {
-        +id: INT
-        +instituicao_id: INT
-        +comentario: TEXT
-        +avaliacao: INT
-        +data: DATE
-    }
-
-    class Notificacao {
-        +id: INT
-        +instituicao_id: INT
-        +mensagem: TEXT
-        +tipo: VARCHAR(50)
-        +dataEnvio: DATETIME
-    }
-
-    class Relatorio {
-        +id: INT
-        +instituicao_id: INT
-        +dataGeracao: DATE
-        +tipo: VARCHAR(50)
-    }
-
-    class Pagamento {
-        +id: INT
-        +instituicao_id: INT
-        +valor: DECIMAL(10,2)
-        +data: DATE
-    }
-
-    class Log {
-        +id: INT
-        +instituicao_id: INT
-        +acao: TEXT
-        +dataHora: DATETIME
-    }
-
-    Instituicao "1" --> "1" Deposito     : possui
-    Deposito     "1" --> "*" Material    : armazena
-    Material     "1" --> "*" Movimentacao : registra
-    Instituicao  "1" --> "*" Doador      : cadastra
-    Instituicao  "1" --> "*" Beneficiario: cadastra
-    Instituicao  "1" --> "*" Agenda      : agenda
-    Instituicao  "1" --> "*" Voluntario  : gerencia
-    Instituicao  "1" --> "*" Usuario     : possui
-    Instituicao  "1" --> "*" Feedback    : recebe
-    Instituicao  "1" --> "*" Notificacao : envia
-    Instituicao  "1" --> "*" Relatorio   : gera
-    Instituicao  "1" --> "*" Pagamento   : integra
-    Instituicao  "1" --> "*" Log         : registra
 
  ```
-
 
 ## 3.4 Diagrama de componentes 
 
