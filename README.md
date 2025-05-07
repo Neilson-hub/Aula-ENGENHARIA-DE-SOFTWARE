@@ -650,6 +650,42 @@ flowchart TD
 
 
 ### 3.6.2 Diagrama C4 de conteiner
+```mermaid
+C4Container
+title Sistema de Doações - Diagrama de Containers
+
+Person(admin, "Administrador", "Gerencia o sistema e acessa relatórios")
+Person(doador, "Doador", "Realiza doações pelo site")
+Person(beneficiario, "Beneficiário", "Recebe materiais doados")
+
+System_Boundary(s1, "Sistema de Doações") {
+    
+    Container(webApp, "Aplicação Web", "Vue.js", "Interface usada por doadores, beneficiários e voluntários")
+    Container(api, "API Backend", "Node.js", "Expõe os serviços de negócio do sistema")
+    Container(db, "Banco de Dados", "MySQL", "Armazena dados de usuários, materiais, doações e agendamentos")
+    Container(notificationService, "Serviço de Notificação", "Python", "Envia emails e alertas sobre movimentações")
+    Container(worker, "Agendador/Worker", "Node.js", "Processa tarefas em segundo plano como coleta e entrega")
+}
+
+System_Ext(emailAPI, "Serviço de E-mail", "Envia notificações para os usuários")
+System_Ext(paymentGateway, "Gateway de Pagamento", "Processa doações financeiras")
+System_Ext(socialMedia, "Redes Sociais", "Plataforma para divulgação de campanhas")
+
+doador --> webApp : Acessa e realiza doações
+beneficiario --> webApp : Consulta entregas
+admin --> webApp : Acompanha o sistema
+
+webApp --> api : Consome API REST
+api --> db : Leitura e gravação de dados
+api --> notificationService : Aciona notificações
+api --> worker : Dispara tarefas em background
+worker --> db : Atualiza status de coletas/entregas
+
+notificationService --> emailAPI : Envia e-mails
+api --> paymentGateway : Processa pagamentos
+api --> socialMedia : Publica atualizações
+```
+
 ### 3.6.2 Diagrama C4 de componente
 ### 3.6.3 Diagrama C4 de código
 
