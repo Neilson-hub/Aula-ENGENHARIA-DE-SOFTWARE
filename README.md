@@ -615,7 +615,8 @@ graph TD
   Worker --> MySQL
   API --> SocialAPI
   API --> PaymentAPI
- ```
+```
+
 ## 3.6 Diagrama C4
 
 ### 3.6.1 Diagrama C4 de contexto 
