@@ -621,31 +621,31 @@ graph TD
 
 ### 3.6.1 Diagrama C4 de contexto 
 ```mermaid
-C4Context
-title Sistema de Doações - Diagrama de Contexto
+flowchart TD
+    subgraph Externo
+        Doador["👤 Doador"]
+        Beneficiario["👤 Beneficiário"]
+        Voluntario["👤 Voluntário"]
+        Admin["👤 Administrador"]
+        RedesSociais["Rede Social"]
+        Email["Serviço de E-mail"]
+        Pagamento["Gateway de Pagamento"]
+        Analytics["Sistema de Relatórios"]
+    end
 
-Person(voluntario, "Voluntário", "Realiza coletas e entregas de materiais")
-Person(doador, "Doador", "Pessoa física ou jurídica que doa materiais de construção")
-Person(beneficiario, "Beneficiário", "Recebe doações por meio do sistema")
-Person(admin, "Administrador", "Gerencia o sistema e supervisiona operações")
+    Sistema["🖥️ Sistema de Doações"]
 
-System(sistemaDoacoes, "Sistema de Doações", "Gerencia doações, estoque, agendamentos, usuários e notificações")
+    Doador -->|Faz doações| Sistema
+    Beneficiario -->|Recebe materiais| Sistema
+    Voluntario -->|Coleta/Entrega| Sistema
+    Admin -->|Gerencia e visualiza dados| Sistema
 
-System_Ext(redeSocial, "Plataforma de Redes Sociais", "Usada para divulgar campanhas e captar doações")
-System_Ext(servicoEmail, "Serviço de E-mail", "Envia notificações e confirmações")
-System_Ext(gatewayPagamento, "Gateway de Pagamento", "Processa doações financeiras de doadores")
-System_Ext(analytics, "Sistema de Relatórios", "Gera dashboards e KPIs para gestores")
-
-doador --> sistemaDoacoes : Realiza doações
-beneficiario --> sistemaDoacoes : Recebe materiais doados
-voluntario --> sistemaDoacoes : Participa da logística
-admin --> sistemaDoacoes : Gera relatórios e gerencia dados
-
-sistemaDoacoes --> redeSocial : Divulga campanhas
-sistemaDoacoes --> servicoEmail : Envia notificações automáticas
-sistemaDoacoes --> gatewayPagamento : Solicita processamento de doações financeiras
-sistemaDoacoes --> analytics : Compartilha dados analíticos
+    Sistema -->|Divulga campanhas| RedesSociais
+    Sistema -->|Envia notificações| Email
+    Sistema -->|Processa doações| Pagamento
+    Sistema -->|Gera KPIs| Analytics
 ```
+
 
 
 
