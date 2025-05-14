@@ -28,7 +28,7 @@ Unemat
   - [6. Diagram](#6-diagram)
     - [A.1. Script SQL](#a1-script-sql)
     - [A.2. Dados ariticiais para teste de banco](#a2-dados-ariticiais-para-teste-de-banco)
-- [8. Cronograma e Gantt](#8-cronograma-e-gantt)
+- [8. Cronograma, grafico de gannt](#8-cronograma-grafico-de-gannt)
 - [9. Custos](#9-custos)
 
 
@@ -1090,7 +1090,7 @@ INSERT INTO Log (instituicao_id, acao, dataHora) VALUES
 
 
 ```
-# 8. Cronograma e Gantt
+# 8. Cronograma, grafico de gannt
 # 9. Custos 
 
 
